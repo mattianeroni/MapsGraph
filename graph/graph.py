@@ -12,7 +12,14 @@ a company, a shop, or a monument.
 
 
 < EDGES >
-Each edge connect two different nodes. 
+Each edge connect two different nodes (i.e. origin and destination), it has a length
+(geographical or euclidean distance between the origin and the destination), and it
+can be marked as one-way, i.e. it can be runned only going from the origin to the 
+destination.
+
+
+< GRAPH >
+
 
 
 """
@@ -218,4 +225,56 @@ class Edge (object):
 
 		"""
 		return self.origin, self.destination
+	
+	
+	
+class Graph (object):
+	"""
+	An instance of this class represents a graph.
+	
+	"""
+	def __init__ (self, nodes, edges):
+		"""
+		Initialize.
+		
+		:attr nodes: The list of nodes.
+		:attr edges: The list of edges.
+		
+		"""
+		self.nodes = nodes
+		self.edges = edges
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
