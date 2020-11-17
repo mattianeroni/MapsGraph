@@ -239,42 +239,24 @@ class Graph (object):
 		
 		:attr nodes: The list of nodes.
 		:attr edges: The list of edges.
+		:attr distance: The matrix of distances between nodes.
 		
 		"""
 		self.nodes = nodes
 		self.edges = edges
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
+		dists = {}
+		for edge in edges:
+			node1 = edge.origin.id; node2 = edge.destination.id
+			if dists.get (node1):
+				dists[node1][node2] = edge.length
+			else:
+				dists[node1] = {node2 : edge.length}
+			
+			if not edge.oneway:
+				if dists.get (node2):
+					dists[node2][node1] = edge.length
+				else:
+					dists[node2] = {node1 : edge.length}
+					
+		self.distances = dists
