@@ -3,7 +3,6 @@ In this file everything concerning the creation of a graph is contained.
 
 
 < NODES >
-
 Each geographical position can be represented as a Node or a Geonode. The Node is 
 characterised by planar coordinates, while the Geonode is characterised by 
 geographical coordinates (i.e. latitude and longitude).
@@ -19,7 +18,11 @@ destination.
 
 
 < GRAPH >
-
+The graph object has a list of nodes and a list of edges connecting these nodes.
+It also has a distance matrix where distances[i][j] means that node i is directly 
+connected to node j (with i and j are the ids of the respective nodes).
+Undirect connections are not reported. Finding them is task of the A* algorithm or
+any other optimizer.
 
 
 """
@@ -30,27 +33,6 @@ import abc
 
 
 Position = collections.namedtuple ("Position", "x y")
-
-
-
-
-
-def _euclidean (pos1, pos2) -> int:
-	"""
-	This method returns the euclidean distance between two positions.
-
-	:param pos1: First position.
-	:param pos2: Second position.
-	:return: The euclidean distance.
-
-	"""
-	return int(((pos1.x - pos2.x)**2 + (pos1.y - pos2.y)**2)**0.5)
-
-
-
-
-
-
 
 
 
@@ -213,9 +195,21 @@ class Edge (object):
 		"""
 		self.origin = origin
 		self.destination = destination
-		self.length = length or int(geodist.geodesic(origin.pos, destination.pos).m) if type(origin) is Geonode else _euclidean(origin.pos, destination.pos)
+		self.length = length or int(geodist.geodesic(origin.pos, destination.pos).m) if type(origin) is Geonode else self.__euclidean(origin.pos, destination.pos)
 		self.oneway = oneway
+		
+		
+	@staticmethod
+	def __euclidean (pos1, pos2):
+	"""
+	This method returns the euclidean distance between two positions.
 
+	:param pos1: First position.
+	:param pos2: Second position.
+	:return: The euclidean distance.
+
+	"""
+	return int(((pos1.x - pos2.x)**2 + (pos1.y - pos2.y)**2)**0.5)
 
 
 	@property
