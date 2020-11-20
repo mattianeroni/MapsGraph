@@ -26,13 +26,8 @@ any other optimizer.
 
 
 """
-
 import geopy.distance as geodist
-import collections
-import abc
 
-
-Position = collections.namedtuple ("Position", "x y")
 
 
 
@@ -54,7 +49,7 @@ class Node (object):
 
 		"""
 		self.id = id
-		self.pos = Position(pos[0], pos[1])
+		self.pos = pos
 		self.active = active
 
 
@@ -72,10 +67,7 @@ class Node (object):
 		if type(other) is Geonode:
 			raise TypeError ("Comparison between a Node and a Geonode")
 
-		if other.pos[0] == self.pos[0] and other.pos[1] == self.pos[1]:
-			return True
-
-		return False
+		return other.pos == self.pos
 
 
 
@@ -92,10 +84,7 @@ class Node (object):
 		if type(other) is Geonode:
 			raise TypeError ("Comparison between a Node and a Geonode")
 
-		if other.pos[0] != self.pos[0] or other.pos[1] != self.pos[1]:
-			return True
-
-		return False
+		return other.pos != self.pos
 
 
 
@@ -122,7 +111,7 @@ class Geonode (object):
 
 		"""
 		self.id = id
-		self.pos = Position (geopos[0], geopos[1])
+		self.pos = geopos
 		self.active = active
 
 
@@ -141,10 +130,7 @@ class Geonode (object):
 		if type(other) is Node:
 			raise TypeError ("Comparison between a Node and a Geonode")
 
-		if other.pos[0] == self.pos[0] and other.pos[1] == self.pos[1]:
-			return True
-
-		return False
+		return other.pos == self.pos
 
 
 
@@ -161,10 +147,7 @@ class Geonode (object):
 		if type(other) is Node:
 			raise TypeError ("Comparison between a Node and a Geonode")
 
-		if other.pos[0] != self.pos[0] or other.pos[1] != self.pos[1]:
-			return True
-
-		return False
+		return other.pos != self.pos
 
 
 
