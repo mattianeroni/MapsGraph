@@ -192,7 +192,7 @@ class Edge (object):
 	:return: The euclidean distance.
 
 	"""
-	return int(((pos1.x - pos2.x)**2 + (pos1.y - pos2.y)**2)**0.5)
+	return int(((pos1[0] - pos2[0])**2 + (pos1[1] - pos2[1])**2)**0.5)
 
 
 	@property
@@ -214,8 +214,8 @@ class Graph (object):
 		"""
 		Initialize.
 		
-		:attr nodes: The list of nodes.
-		:attr edges: The list of edges.
+		:attr nodes: The set of nodes.
+		:attr edges: The set of edges.
 		:attr distance: The matrix of distances between nodes.
 		
 		"""
