@@ -1,0 +1,1 @@
+from .mapscraper import MapScraper
