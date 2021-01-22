@@ -4,4 +4,4 @@ All these tools have been integrated in a simple ready-to-use class.
 
 ![alt text](https://github.com/mattianeroni/MapsGraph/blob/main/st.png)
 
-I would like to point out that nothing "new" is introduced in this repository. This is just a collections of tools already existent in networkx and geopython.
+I would like to point out that nothing "new" is introduced in this repository. This is just a collection of tools already existent in networkx and geopython.
